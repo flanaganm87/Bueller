@@ -7,8 +7,10 @@ Bueller::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
  
- 
-  root to: "welcome#index"
+  resources :students
+  
+  resources :posts
+    root to: "welcome#index"
  
 
   # Example of regular route:

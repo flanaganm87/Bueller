@@ -1,0 +1,20 @@
+<h1 style = "color:red;"> Create New Student </h1>
+<br>
+
+<%= form_for :post, url: posts_path do |f| %>
+  <p>  
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname %><br>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+    <%= f.label :gravatar %>
+    <%= f.text_field :gravatar %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', root_path %>  
