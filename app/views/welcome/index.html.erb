@@ -2,4 +2,19 @@
 <p> <%= link_to 'New Student', students_path %></p>
 
 
+<table>
+ 
+  <% @students.each do |s| %>
+    <tr>
+      <td><%= s.name %> </td>
+      <td><%= s.nickname %>  </td>
+      <td><%= s.email %> </td>
+      <td><img src = <%= s.gravatar %> height="100" width="100"> </td>
+      <td>    <%= link_to 'Edit', edit_student_path(s) %> </td>
+    </tr>
+  <% end %>
+  
+  
+</table>
+
 

@@ -1,0 +1,36 @@
+<h1 style = "color:red;"> Update Student </h1>
+<br>
+
+
+<%= form_for @student do |f| %>
+  <% if @student.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@student.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @student.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<% end %>
+<%= form_for :post, url: edit_student_path do |f| %>
+  <p>  
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname %><br>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+    <%= f.label :gravatar %>
+    <%= f.text_field :gravatar %>
+   
+  </p>
+ 
+  <p>
+    <%= f.submit "Edit student" %>
+  </p>
+<% end %>
+<%= link_to 'Back', root_path %>  
