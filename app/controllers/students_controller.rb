@@ -7,7 +7,9 @@ class StudentsController < ApplicationController
   end
   
   def create
-     render text: params[:post].inspect
+    @student = Student.new(student_params)
+    @student.save
+    redirect_to students_path
   end
   
   def edit
@@ -17,11 +19,12 @@ class StudentsController < ApplicationController
   end
   
   def show
+    @student = Student.find(params[:id])
   end
   
   private
-  def post_params
-    params.require(:post).permit(:name, :nickname, :email, :gravatar)
+  def student_params
+    params.require(:student).permit(:name, :nickname, :email, :gravatar)
   end
   
 end
