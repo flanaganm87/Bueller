@@ -2,7 +2,8 @@
 <br>
 
 <%= form_for :student, url: students_path do |f| %>
-  <p>  
+  
+   <p>  
     <%= f.label :name %>
     <%= f.text_field :name %><br>
     <%= f.label :nickname %>
@@ -12,7 +13,7 @@
     <%= f.label :gravatar %>
     <%= f.text_field :gravatar %>
   </p>
- 
+
   <p>
     <%= f.submit "Create student" %>
   </p>

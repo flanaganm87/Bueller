@@ -7,20 +7,20 @@ class StudentsController < ApplicationController
   end
   
   def create
- 
     @student = Student.new(params[:student].permit(:name, :nickname, :email, :gravatar))
     if ( @student.gravatar.length == 0 )
 
         require 'digest/md5'
        email_address = @student.email.downcase
-
         hash = Digest::MD5.hexdigest(email_address)
-
         @student.gravatar = "http://www.gravatar.com/avatar/#{hash}"
          
     end
     @student.save
-    redirect_to root_path
+    if( @student.save )
+      flash[:notice] = "You have succesfully created a student!"
+      redirect_to @student, :flash => { :notice => "The student was successfully created!" }
+    end
   end
   
   def edit
@@ -31,11 +31,12 @@ class StudentsController < ApplicationController
   end
   
   def update
-
      @student = Student.find(params[:id])
-    if @student.update(params[:post].permit(:name, :nickname, :email, :gravatar))
-      redirect_to @student
-     else
+    if @student.update(params[:student].permit(:name, :nickname, :email, :gravatar))
+      @student.save
+      redirect_to @student, :flash => { :notice => "You successfully updated your student profile!" }
+     
+    else
         render 'edit'
     end   
    
@@ -43,11 +44,11 @@ class StudentsController < ApplicationController
   
   def show
     @student = Student.find(params[:id])
+    redirect_to :root
   end
   
   private
   def student_params
-    params.require(:post).permit(:name, :nickname, :email, :gravatar)
+    params.require(:student.permit(:name, :nickname, :email, :gravatar))
   end
-  
 end

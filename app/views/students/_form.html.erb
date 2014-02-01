@@ -1,7 +1,8 @@
 <h1 style = "color:red;"> Update Student </h1>
 <br>
 
-<%= form_for :student, url: edit_student_path(@student), method: :patch do |f| %>
+<%= form_for :student, url: student_path(@student), method: :patch do |f| %>
+
   <p>  
     <%= f.label :name %>
     <%= f.text_field :name %><br>
@@ -13,7 +14,7 @@
     <%= f.text_field :gravatar %>
    
   </p>
- 
+
   <p>
     <%= f.submit "Edit student" %>
   </p>
